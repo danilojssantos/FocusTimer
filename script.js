@@ -10,7 +10,12 @@ const secondsDisplay = document.querySelector('.seconds')
 
 
 // Eventos event drive
-
+function resetControls() {
+    buttonPlay.classList.remove('hide')
+    buttonPause.classList.add('hide')
+    buttonSet.classList.remove('hide')
+    buttonStop.classList.add('hide')
+}
 
 function countdow() {
     setTimeout(function() {
@@ -18,14 +23,11 @@ function countdow() {
         let seconds = Number(secondsDisplay.textContent)
         let minutes = Number(minutesDisplay.textContent)
 
-        secondsDisplay.textContent = String(seconds -1).padStart(2 ,"0")
+        secondsDisplay.textContent = "00"
 
         if (minutes <= 0) {
 
-            buttonPlay.classList.remove('hide')
-            buttonPause.classList.add('hide')
-            buttonSet.classList.remove('hide')
-            buttonStop.classList.add('hide')
+            resetControls()
             return
         }
 
