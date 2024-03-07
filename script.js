@@ -17,6 +17,11 @@ function resetControls() {
     buttonStop.classList.add('hide')
 }
 
+function updateDisplayTimer(minutes, seconds) {
+    minutesDisplay.textContent = String(minutes).padStart(2, "0")
+    minutesDisplay.textContent = String(seconds).padStart(2, "0")
+}
+
 function countdow() {
     setTimeout(function() {
 
@@ -68,10 +73,7 @@ buttonPause.addEventListener('click', function (){
 })
 
 buttonStop.addEventListener('click', function(){
-    buttonPlay.classList.remove('hide')
-    buttonPause.classList.add('hide')
-    buttonSet.classList.remove('hide')
-    buttonStop.classList.add('hide')
+   resetControls()
 })
 
 buttonSoundOff.addEventListener('click', function() {
@@ -87,6 +89,6 @@ buttonSoundOn.addEventListener('click', function() {
 buttonSet.addEventListener('click', function(){
     minutes = prompt('Quantos Minutos')
 
-    minutesDisplay.textContent = String(minutes).padStart(2, "0")
+    updateDisplayTimer(minutes, 0)
    // console.log(minutesDisplay.textContent = 3)
 })
