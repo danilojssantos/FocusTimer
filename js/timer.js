@@ -1,10 +1,13 @@
 export default function Timer({
     minutesDisplay,
     secondsDisplay,
-    timerTimeOut,
-    resetControls
+  
+    resetControls,
+    minutes
 
 }){
+
+    let timerTimeOut
 
     function updateDisplay(minutes, seconds) {
         minutesDisplay.textContent = String(minutes).padStart(2, "0")
@@ -13,6 +16,15 @@ export default function Timer({
 
     function reset() {
         updateDisplay(minutes, 0)
+        clearTimeout(timerTimeOut)
+    }
+
+    function updateMinutes(newMinutes){
+
+        minutes = newMinutes
+    }
+
+    function hold(){
         clearTimeout(timerTimeOut)
     }
 
@@ -46,6 +58,8 @@ export default function Timer({
     return{
         countdow,
         reset,
-        updateDisplay
+        updateDisplay,
+        updateMinutes,
+        hold
     }
 }
