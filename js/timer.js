@@ -1,36 +1,50 @@
-function updateDisplayTimer(minutes, seconds) {
-    minutesDisplay.textContent = String(minutes).padStart(2, "0")
-    secondsDisplay.textContent = String(seconds).padStart(2, "0")
-}
+export function Timer({
+    minutesDisplay,
+    secondsDisplay,
+    timerTimeOut,
+    resetControls
 
-function resetTimer() {
-    updateDisplayTimer(minutes, 0)
-    clearTimeout(timerTimeOut)
-}
+}){
 
-function countdow() {
-   timerTimeOut = setTimeout(function() {
+    function updateDisplayTimer(minutes, seconds) {
+        minutesDisplay.textContent = String(minutes).padStart(2, "0")
+        secondsDisplay.textContent = String(seconds).padStart(2, "0")
+    }
 
-        let seconds = Number(secondsDisplay.textContent)
-        let minutes = Number(minutesDisplay.textContent)
-
-        //secondsDisplay.textContent = "00"
+    function resetTimer() {
         updateDisplayTimer(minutes, 0)
+        clearTimeout(timerTimeOut)
+    }
 
-        if (minutes <= 0) {
+    function countdow() {
+    timerTimeOut = setTimeout(function() {
 
-            resetControls()
-            return
-        }
+            let seconds = Number(secondsDisplay.textContent)
+            let minutes = Number(minutesDisplay.textContent)
 
-        if(seconds <=0){
-            seconds = 60
-            --minutes       
-        }
+            //secondsDisplay.textContent = "00"
+            updateDisplayTimer(minutes, 0)
 
-         //secondsDisplay.textContent = String(seconds -1).padStart(2 ,"0")
-         updateDisplayTimer(minutes, String(seconds -1))
+            if (minutes <= 0) {
 
-        countdow()
-    }, 1000)
+                resetControls()
+                return
+            }
+
+            if(seconds <=0){
+                seconds = 60
+                --minutes       
+            }
+
+            //secondsDisplay.textContent = String(seconds -1).padStart(2 ,"0")
+            updateDisplayTimer(minutes, String(seconds -1))
+
+            countdow()
+        }, 1000)
+    }
+
+    return{
+        countdow,
+        resetTimer
+    }
 }
