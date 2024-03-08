@@ -23,7 +23,7 @@ function updateDisplayTimer(minutes, seconds) {
 }
 
 function resetTimer() {
-    updateDisplayTimer(minutes)
+    updateDisplayTimer(minutes, 0)
     clearTimeout(timerTimeOut)
 }
 
@@ -78,6 +78,7 @@ buttonPause.addEventListener('click', function (){
 
 buttonStop.addEventListener('click', function(){
    resetControls()
+   resetTimer()
    
 })
 
@@ -92,7 +93,14 @@ buttonSoundOn.addEventListener('click', function() {
 })
 
 buttonSet.addEventListener('click', function(){
-    minutes = prompt('Quantos Minutos') || 0
+   let newMinutes = prompt('Quantos Minutos') 
+
+    if (!newMinutes) {
+        resetTimer()
+        retunr
+    }
+
+    minutes = newMinutes
     updateDisplayTimer(minutes, 0)
    
 })
