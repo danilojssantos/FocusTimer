@@ -1,4 +1,4 @@
-export function Timer({
+export default function Timer({
     minutesDisplay,
     secondsDisplay,
     timerTimeOut,
@@ -6,13 +6,13 @@ export function Timer({
 
 }){
 
-    function updateDisplayTimer(minutes, seconds) {
+    function updateDisplay(minutes, seconds) {
         minutesDisplay.textContent = String(minutes).padStart(2, "0")
         secondsDisplay.textContent = String(seconds).padStart(2, "0")
     }
 
-    function resetTimer() {
-        updateDisplayTimer(minutes, 0)
+    function reset() {
+        updateDisplay(minutes, 0)
         clearTimeout(timerTimeOut)
     }
 
@@ -23,7 +23,7 @@ export function Timer({
             let minutes = Number(minutesDisplay.textContent)
 
             //secondsDisplay.textContent = "00"
-            updateDisplayTimer(minutes, 0)
+            updateDisplay(minutes, 0)
 
             if (minutes <= 0) {
 
@@ -37,7 +37,7 @@ export function Timer({
             }
 
             //secondsDisplay.textContent = String(seconds -1).padStart(2 ,"0")
-            updateDisplayTimer(minutes, String(seconds -1))
+            updateDisplay(minutes, String(seconds -1))
 
             countdow()
         }, 1000)
@@ -45,6 +45,7 @@ export function Timer({
 
     return{
         countdow,
-        resetTimer
+        reset,
+        updateDisplay
     }
 }
